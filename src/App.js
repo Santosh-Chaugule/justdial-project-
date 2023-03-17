@@ -3,6 +3,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
+import BusinessRegister from './pages/BusinessRegister'
 import Details from './pages/Details'
 import Home from './pages/Home'
 import Login from './pages/Login'
@@ -28,6 +29,12 @@ export default function App() {
                     <Route path='details' element={<Details />}></Route>
                     <Route path='login' element={<Login />}></Route>
                     <Route path='register' element={<Register />}></Route>
+                    {
+                        window.localStorage.getItem('jwt_tokan') !== null &&
+
+                        <Route path='business_register' element={<BusinessRegister />}></Route>
+                    }
+
                 </Route>
 
             </Routes>

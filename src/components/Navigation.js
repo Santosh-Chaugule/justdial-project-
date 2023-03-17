@@ -5,6 +5,12 @@ import Logo from '../../src/logo.svg'
 
 
 export default function Navigation() {
+
+    //2.2 . FUnction defination 
+    let myLogout = () => {
+        window.localStorage.removeItem('jwt_tokan');
+        window.location.href = '/login'
+    }
     return (
         <>
             <Navbar bg="light" expand="lg" className='h-100 m-auto'>
@@ -34,8 +40,20 @@ export default function Navigation() {
                             navbarScroll
                         >
                             <Link to="/" className='btn btn-link'>Home</Link>
-                            <Link to="/login" className='btn btn-link'>Login</Link>
-                            <Link to="/register" className='btn btn-link'>Register</Link>
+
+                            {
+                                window.localStorage.getItem('jwt_tokan') === null &&
+                                <>
+                                    <Link to="/login" className='btn btn-link'>Login</Link>
+                                    <Link to="/register" className='btn btn-link'>Register</Link>
+                                </>
+
+                            }
+                            {
+                                window.localStorage.getItem('jwt_tokan') !== null &&
+                                <Nav.Link onClick={() => { myLogout() }} className="btn btn-link"> Logout</Nav.Link>
+                            }
+
                         </Nav>
 
                     </Navbar.Collapse>

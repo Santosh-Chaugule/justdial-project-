@@ -6,7 +6,40 @@ export default function Login() {
 
     //2.2 Function defination area
     let LoginUser = () => {
-        alert("hi")
+
+
+        let payload = {
+            "identifier": document.querySelector('input[type=email]').value,
+            "password": document.querySelector('input[type=password]').value,
+        }
+        console.log(payload);
+        //API use for network call
+        fetch(`http://localhost:1337/api/auth/local`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(res => res.json())
+            .then((data) => {
+
+                if (data["jwt"] !== undefined) {
+                    //alert('Welcome')
+
+
+                    window.location.href = '/business_register'
+
+
+                    //store the tokan in local storage
+                    window.localStorage.setItem('jwt_tokan', data["jwt"])
+                } else {
+                    alert('Bheed kam')
+
+                }
+                console.log(data)
+            })
+            .catch(err => err)
     }
     return (
         <>
