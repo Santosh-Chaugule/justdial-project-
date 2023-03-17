@@ -2,8 +2,16 @@ import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 
 export default function Login() {
+    //2.1 Hooks Area
+
+    //2.2 Function defination area
+    let LoginUser = () => {
+        alert("hi")
+    }
     return (
         <>
+
+            <h1 className='text-center'>Login Page</h1>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -20,7 +28,7 @@ export default function Login() {
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox" label="Check me out" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="button" onClick={() => { LoginUser() }}>
                     Submit
                 </Button>
             </Form>
